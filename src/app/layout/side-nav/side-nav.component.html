@@ -1,0 +1,62 @@
+<!-- <ng-container *ngIf="userRole !== 'ADMINISTRADOR'"> -->
+    <div
+      id="sidenav"
+      class="sidenav"
+      [style]="{ width: navWidth }"
+      (mouseover)="changeSidenavWidth('mouse')"
+      (mouseout)="changeSidenavWidth('mouse')"
+    >
+      <div class="logo-container">
+        <img
+          id="logo"
+          class="logo-image"
+          [src]="'../../../assets/icons/logo.svg'"
+          alt="Acuerdo Sencillo"
+        />
+        <span id="logoLabel">Acuerdo Sencillo</span>
+      </div>
+  
+      <div class="toggle-container">
+        <span id="toggle" (click)="onToggleClick()">
+          <i
+            [class]="
+              (storeService.state$ | async)!.isSidenavFixed
+                ? 'ph-caret-double-left'
+                : 'ph-caret-double-right'
+            "
+          ></i>
+        </span>
+      </div>
+  
+      <hr class="separator-line" />
+  
+      <ul>
+        <li
+          class="optionsList"
+          *ngFor="let optionItem of optionsList; let i = index"
+        >
+          <a
+            [ngClass]="{
+              disabled: !(store$ | async)!.currentUser.isProfileComplete
+            }"
+            class="optionLink"
+            [routerLink]="[optionItem]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <span>
+              <i class="material-icons" [class]="optionItem"></i>
+  
+              <span class="icon-text"
+                >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+                  optionItem
+                }}</span
+              >
+              <br />
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+<!-- </ng-container> -->
+  
