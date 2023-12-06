@@ -1,0 +1,7 @@
+<main>
+  <section class="movies-list">
+    <ng-container *ngFor="let movie of movies">
+      <app-movie-card class="movie-card" [movie]="movie"></app-movie-card>
+    </ng-container>
+  </section>
+</main>

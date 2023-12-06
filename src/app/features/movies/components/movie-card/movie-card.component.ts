@@ -33,8 +33,8 @@ export class MovieCardComponent implements OnInit, OnDestroy {
     event.stopPropagation();
 
     this.isFavorite
-      ? this._moviesWishlistService.removeFromWishlist(this.movie!.id)
-      : this._moviesWishlistService.addToWishlist(this.movie!.id);
+      ? this._moviesWishlistService.removeFromWishlist(this.movie!.id, this.movie!.title)
+      : this._moviesWishlistService.addToWishlist(this.movie!.id, this.movie!.title);
   }
 
   get img(): string {

@@ -7,9 +7,13 @@
       <h2 class="movie-title">{{ movie?.title }}</h2>
     </section>
     <section class="info-container">
-      <p>{{ movie?.rating }}</p>
+      <p>
+        <i class="ph ph-star"></i>
+        {{ movie?.rating }}
+      </p>
       <button class="wishlist-button" (click)="addToWishlist($event)">
-        <i [class]="isFavorite ? 'ph-fill ph-star' : 'ph ph-star'"></i>
+        <span class="wishlist-status">{{ isFavorite ? 'Remove from Wishlist' : 'Add to your Wishlist' }}</span>
+        <i [class]="isFavorite ? 'ph-fill ph-heart-straight' : 'ph ph-heart-straight'"></i>
       </button>
     </section>
   </div>

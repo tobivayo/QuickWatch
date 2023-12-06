@@ -64,13 +64,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease-in-out;
 
   &:hover {
-    filter: brightness(0.95);
+    filter: brightness(0.8);
+  }
+
+  .wishlist-status {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
   }
 
   .ph-fill {
-    color: #ffc107;
+    color: rgb(218,18,18);
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   }
 }
 

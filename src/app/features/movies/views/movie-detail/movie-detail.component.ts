@@ -43,8 +43,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   onFavoriteClick(): void {
     this.isFavorite
-      ? this._wishlistService.removeFromWishlist(this.movie!.id)
-      : this._wishlistService.addToWishlist(this.movie!.id);
+      ? this._wishlistService.removeFromWishlist(this.movie!.id, this.movie!.title)
+      : this._wishlistService.addToWishlist(this.movie!.id, this.movie!.title);
   }
 
   private _checkForFavorite() {

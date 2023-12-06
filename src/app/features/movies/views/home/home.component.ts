@@ -3,13 +3,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { MoviesApiService } from '../../services/movies-api/movies-api.service';
 import { Movie } from 'src/app/core/interfaces/movie.interface';
+import { MoviesListComponent } from '../../container/movies-list/movies-list.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, MovieCardComponent]
+  imports: [CommonModule, MoviesListComponent]
 })
 export class HomeComponent implements OnInit {
   moviesApi = inject(MoviesApiService);

@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class MoviesWishlistService {
   private _wishlistKey = 'wishlist';
   private _localStorageService = inject(LocalStorageService);
+  private _snackbar = inject(MatSnackBar);
 
   private _wishlist = new BehaviorSubject<string[] | null>(null);
   public readonly wishlist$ = this._wishlist.asObservable();
@@ -23,7 +25,11 @@ export class MoviesWishlistService {
     this._wishlist.next(wishlist);
   }
 
-  addToWishlist(movieId: string): void {
+  getCurrentWishlist(): string[] {
+    return this._wishlist.value || [];
+  }
+
+  addToWishlist(movieId: string, name: string): void {
     const wishlist = this._wishlist.value;
 
     if (!wishlist) {
@@ -32,17 +38,27 @@ export class MoviesWishlistService {
       const newWishlist = [...wishlist, movieId];
       this._localStorageService.setItem(this._wishlistKey, newWishlist);
     }
-
+    this._snackbar.open(`${name} was added to the Wishlist!`, '' ,{
+      duration: 2000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'start'
+    })
     this.updateState();
   }
 
-  removeFromWishlist(movieId: string): void {
+
+  removeFromWishlist(movieId: string, name: string): void {
     const wishlist = this._wishlist.value;
     if (!wishlist) return;
 
     const newWishlist = wishlist.filter((id) => id !== movieId);
     this._localStorageService.setItem(this._wishlistKey, newWishlist);
 
+    this._snackbar.open(`${name} was removed from the Wishlist!`, '' ,{
+      duration: 2000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'start',
+    })
     this.updateState();
   }
 }

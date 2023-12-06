@@ -20,6 +20,7 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   height: 88%;
+  width: calc(100% - 4rem);
   padding-inline: 2rem;
 }
 
@@ -47,7 +48,8 @@ h1 {
     }
 
     .ph-fill {
-      color: #ffc107;
+      color: rgb(218,18,18);
+      text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
     }
   }
 

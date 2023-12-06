@@ -1,0 +1,16 @@
+
+.movies-list {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 97px);
+  overflow-x: auto;
+  // margin-top: 1rem;
+}
+
+.movie-card {
+  display: flex;
+  flex-shrink: 0;
+  height: calc(100vh - 8.7rem);
+  margin-top: 1rem;
+  margin-inline: 1rem;
+}

@@ -12,10 +12,6 @@
     </button>
   </section>
   <section class="movies-list">
-    <!-- <div class="movies-container"> -->
-      <ng-container *ngFor="let movie of movies">
-        <app-movie-card class="movie-card" [movie]="movie"></app-movie-card>
-      </ng-container>
-    <!-- </div> -->
+      <app-movies-list [movies]="movies"></app-movies-list>
   </section>
 </main>

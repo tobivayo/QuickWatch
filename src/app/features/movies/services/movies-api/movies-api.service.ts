@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable, map, of } from 'rxjs';
 import { Movie } from 'src/app/core/interfaces/movie.interface';
 import movies from '../../../../../assets/data.json';
+import { MoviesWishlistService } from '../movies-wishlist/movies-wishlist.service';
 
 interface MoviesRepository {
   getMovies(): Observable<Movie[]>;
@@ -11,11 +12,19 @@ interface MoviesRepository {
   providedIn: 'root'
 })
 export class MoviesApiService implements MoviesRepository{
-
+  private _wishlistService = inject(MoviesWishlistService);
   constructor() {}
 
   public getMovies(): Observable<Movie[]> {
     return of(movies).pipe(map((movies) => this._moviesAdapter(movies)))
+  }
+
+  public getWishlistMovies(): Observable<Movie[]> {
+    return of(movies).pipe(map((movies) => {
+      const wishlistIds = this._wishlistService.getCurrentWishlist();
+      const wishlist = this._moviesAdapter(movies).filter((m) => wishlistIds.includes(m.id));
+      return wishlist
+    }));
   }
 
   public getMovieById(id: string): Observable<Movie> {
