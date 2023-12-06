@@ -1,0 +1,76 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  height: 450px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(500,500,500, 0.12);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.15);
+    background-color: rgba(500,500,500, 0.5);
+    transform-origin: top;
+    .footer-container {
+      display: block;
+    }
+  }
+
+  .img-container {
+    height: 100%;
+    width: 95%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    img {
+      height: 100%;
+    }
+  }
+
+  .footer-container {
+    display: none;
+  }
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-title {
+  text-align: center;
+  max-width: 75%;
+}
+
+.wishlist-button {
+  background-color: transparent;
+  color: black;
+  border: 0px;
+  outline: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+
+  .ph-fill {
+    color: #ffc107;
+  }
+}
+

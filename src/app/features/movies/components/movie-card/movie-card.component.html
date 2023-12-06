@@ -1,0 +1,16 @@
+<div class="movie-card" [routerLink]="['/movie', movie?.id]">
+  <div class="img-container">
+    <img [src]="img" [alt]="movie?.imgUrl">
+  </div>
+  <div class="footer-container">
+    <section class="title-container">
+      <h2 class="movie-title">{{ movie?.title }}</h2>
+    </section>
+    <section class="info-container">
+      <p>{{ movie?.rating }}</p>
+      <button class="wishlist-button" (click)="addToWishlist($event)">
+        <i [class]="isFavorite ? 'ph-fill ph-star' : 'ph ph-star'"></i>
+      </button>
+    </section>
+  </div>
+</div>

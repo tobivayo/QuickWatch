@@ -1,0 +1,21 @@
+<main class="main-container">
+  <section class="btns-container">
+    <p>Order by: </p>
+    <button (click)="sortByDate()" [class.active]="activeSort == 'date'">
+      Date <i class="ph ph-calendar-blank"></i>
+    </button>
+    <button (click)="sortByName()" [class.active]="activeSort == 'name'">
+      Name <i class="ph ph-pencil-simple"></i>
+    </button>
+    <button (click)="sortByRating()" [class.active]="activeSort == 'rating'">
+      Rating <i class="ph ph-star"></i>
+    </button>
+  </section>
+  <section class="movies-list">
+    <!-- <div class="movies-container"> -->
+      <ng-container *ngFor="let movie of movies">
+        <app-movie-card class="movie-card" [movie]="movie"></app-movie-card>
+      </ng-container>
+    <!-- </div> -->
+  </section>
+</main>

@@ -1,0 +1,75 @@
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: calc(100vh - 65px);
+  width: 100%;
+  background: rgb(121,12,102);
+  background: linear-gradient(0deg, rgba(121,12,102,1) 0%, #212121 70%);
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0 1rem 2rem;
+  color: white;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 88%;
+  padding-inline: 2rem;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(500,500,500, 0.12);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+
+  p {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+
+    a {
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+
+    .ph-fill {
+      color: #ffc107;
+    }
+  }
+
+  .img-container {
+    display: flex;
+    justify-content: center;
+    height: 340px;
+
+    .movie-img {
+      object-fit: contain;
+    }
+  }
+
+}
+
+.trailer-container {
+  width: 68%;
+  height: 100%;
+  padding-left: 2rem;
+}
+
+.trailer {
+  height: 100%;
+  width: 100%;
+}

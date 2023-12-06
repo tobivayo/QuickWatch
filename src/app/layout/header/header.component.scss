@@ -1,0 +1,33 @@
+.header {
+  height: 65px;
+}
+
+.title {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+
+  a {
+    height: 65px;
+    padding-inline: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    filter: brightness(0.5);
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  .active {
+    filter: brightness(1);
+  }
+}

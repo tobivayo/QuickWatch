@@ -1,0 +1,41 @@
+<div class="movie-container">
+  <h1>
+    {{ movie?.title }}
+  </h1>
+  <div class="details-container">
+    <div class="details-card">
+      <p>
+        <span>
+          {{ movie?.genre }}
+        </span>
+        <a (click)="onFavoriteClick()">
+          {{ isFavorite ? 'In your Wishlist' : 'Add to Wishlist' }}
+          <i [class]="isFavorite ? 'ph-fill ph-star' : 'ph ph-star'"></i>
+        </a>
+      </p>
+      <p>
+        <span>
+          <i class="ph ph-calendar-blank"></i>
+          {{ movie?.releaseDate | date : "dd/MM/yyyy"}}
+        </span>
+      </p>
+      <p>
+        <span>
+          <i class="ph ph-clock"></i>
+          {{ movie?.duration }}
+        </span>
+        <span>
+          <i class="ph ph-star"></i>
+          {{ movie?.rating }}
+        </span>
+      </p>
+      <p>{{ movie?.description }}</p>
+      <div class="img-container">
+        <img [src]="imgSrc" [alt]="movie?.title" class="movie-img">
+      </div>
+    </div>
+    <div class="trailer-container">
+      <iframe class="trailer" src="https://www.youtube.com/embed/LdOM0x0XDMo?si=b73MW6n_X9UkoORm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
