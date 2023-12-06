@@ -41,6 +41,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.stars-container {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+  margin-right: 0.5rem;
+}
+
+.filled-stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffc107;
+}
+
+
+.empty-stars:before,
+.filled-stars:before {
+  font-size: 14pt;
+}
+
+.empty-stars:before {
+  -webkit-text-stroke: 1px rgb(255, 255, 255, 0.5);
+}
+
+.filled-stars:before {
+  -webkit-text-stroke: 1px rgb(255, 255, 255, 0.5);
 }
 
 .title-container {
@@ -54,7 +92,12 @@
   max-width: 75%;
 }
 
-.wishlist-button {
+.rating-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.watchlist-button {
   background-color: transparent;
   color: black;
   border: 0px;
@@ -70,7 +113,7 @@
     filter: brightness(0.8);
   }
 
-  .wishlist-status {
+  .watchlist-status {
     font-size: 0.9rem;
     margin-right: 0.5rem;
   }

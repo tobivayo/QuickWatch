@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Movie } from 'src/app/core/interfaces/movie.interface';
-import { MoviesWishlistService } from '../../services/movies-wishlist/movies-wishlist.service';
+import { MoviesWatchlistService } from '../../services/movies-watchlist/movies-watchlist.service';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
@@ -12,32 +12,37 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink]
 })
 export class MovieCardComponent implements OnInit, OnDestroy {
-  private _moviesWishlistService = inject(MoviesWishlistService);
+  private _moviesWatchlistService = inject(MoviesWatchlistService);
   @Input() movie: Movie | null = null;
 
   isFavorite: boolean = false;
-  wishlistSub: Subscription | null = null;
+  watchlistSub: Subscription | null = null;
 
   ngOnInit(): void {
-    this.wishlistSub = this._moviesWishlistService.wishlist$.subscribe( (wishlist) => {
-      if (!wishlist) return;
-      this.isFavorite = wishlist.includes(this.movie!.id);
+    this.watchlistSub = this._moviesWatchlistService.watchlist$.subscribe( (watchlist) => {
+      if (!watchlist) return;
+      this.isFavorite = watchlist.includes(this.movie!.id);
     })
   }
 
   ngOnDestroy(): void {
-    this.wishlistSub?.unsubscribe();
+    this.watchlistSub?.unsubscribe();
   }
 
-  addToWishlist(event: MouseEvent): void {
+  addToWatchlist(event: MouseEvent): void {
     event.stopPropagation();
 
     this.isFavorite
-      ? this._moviesWishlistService.removeFromWishlist(this.movie!.id, this.movie!.title)
-      : this._moviesWishlistService.addToWishlist(this.movie!.id, this.movie!.title);
+      ? this._moviesWatchlistService.removeFromWatchlist(this.movie!.id, this.movie!.title)
+      : this._moviesWatchlistService.addToWatchlist(this.movie!.id, this.movie!.title);
   }
 
   get img(): string {
     return `../../../../../assets/${this.movie?.imgUrl}`;
+  }
+
+  get ratingPercentage(): string {
+    const percentage = ((this.movie?.rating || 0) / 10) * 100;
+    return `${percentage}%`;
   }
 }

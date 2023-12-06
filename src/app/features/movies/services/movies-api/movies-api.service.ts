@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
 import { Movie } from 'src/app/core/interfaces/movie.interface';
 import movies from '../../../../../assets/data.json';
-import { MoviesWishlistService } from '../movies-wishlist/movies-wishlist.service';
+import { MoviesWatchlistService } from '../movies-watchlist/movies-watchlist.service';
 
 interface MoviesRepository {
   getMovies(): Observable<Movie[]>;
@@ -12,18 +12,18 @@ interface MoviesRepository {
   providedIn: 'root'
 })
 export class MoviesApiService implements MoviesRepository{
-  private _wishlistService = inject(MoviesWishlistService);
+  private _watchlistService = inject(MoviesWatchlistService);
   constructor() {}
 
   public getMovies(): Observable<Movie[]> {
     return of(movies).pipe(map((movies) => this._moviesAdapter(movies)))
   }
 
-  public getWishlistMovies(): Observable<Movie[]> {
+  public getWatchlistMovies(): Observable<Movie[]> {
     return of(movies).pipe(map((movies) => {
-      const wishlistIds = this._wishlistService.getCurrentWishlist();
-      const wishlist = this._moviesAdapter(movies).filter((m) => wishlistIds.includes(m.id));
-      return wishlist
+      const watchlistIds = this._watchlistService.getCurrentWatchlist();
+      const watchlist = this._moviesAdapter(movies).filter((m) => watchlistIds.includes(m.id));
+      return watchlist
     }));
   }
 

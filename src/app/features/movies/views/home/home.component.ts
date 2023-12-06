@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   sortByDate(): void {
-    this.movies.sort((a, b) => a.releaseDate.getTime() - b.releaseDate.getTime());
+    this.movies.sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime() );
     this.activeSort = 'date';
   }
 

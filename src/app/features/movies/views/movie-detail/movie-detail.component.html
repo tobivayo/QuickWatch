@@ -9,7 +9,7 @@
           {{ movie?.genre }}
         </span>
         <a (click)="onFavoriteClick()">
-          {{ isFavorite ? 'In your Wishlist' : 'Add to Wishlist' }}
+          {{ isFavorite ? 'In your Watchlist' : 'Add to Watchlist' }}
           <i [class]="isFavorite ? 'ph-fill ph-heart-straight' : 'ph ph-heart-straight'"></i>
         </a>
       </p>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="trailer-container">
-      <iframe class="trailer" src="https://www.youtube.com/embed/LdOM0x0XDMo?si=b73MW6n_X9UkoORm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe class="trailer" [src]="urlSrc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </div>

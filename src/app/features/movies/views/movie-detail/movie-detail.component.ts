@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MoviesApiService } from '../../services/movies-api/movies-api.service';
 import { Movie } from 'src/app/core/interfaces/movie.interface';
 import { CommonModule } from '@angular/common';
-import { MoviesWishlistService } from '../../services/movies-wishlist/movies-wishlist.service';
+import { MoviesWatchlistService } from '../../services/movies-watchlist/movies-watchlist.service';
 import { Subscription } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,8 +17,9 @@ import { Subscription } from 'rxjs';
 export class MovieDetailComponent implements OnInit, OnDestroy {
   private _activatedRoute = inject(ActivatedRoute);
   private _moviesApiService = inject(MoviesApiService);
-  private _wishlistService = inject(MoviesWishlistService);
-  private _wishlistSub: Subscription | null = null;
+  private _watchlistService = inject(MoviesWatchlistService);
+  private _sanitizer = inject(DomSanitizer);
+  private _watchlistSub: Subscription | null = null;
 
   id: string = this._activatedRoute.snapshot.params['id'];
   movie: Movie | null = null;
@@ -28,6 +30,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     return `../../../../../assets/${this.movie?.imgUrl}`;
   }
 
+  get urlSrc(): SafeResourceUrl {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(this.movie?.trailerUrl || '');
+  }
+
   ngOnInit(): void {
     this._moviesApiService.getMovieById(this.id).subscribe( movie => {
       this.movie = movie;
@@ -36,21 +42,21 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this._wishlistSub) {
-      this._wishlistSub.unsubscribe();
+    if (this._watchlistSub) {
+      this._watchlistSub.unsubscribe();
     }
   }
 
   onFavoriteClick(): void {
     this.isFavorite
-      ? this._wishlistService.removeFromWishlist(this.movie!.id, this.movie!.title)
-      : this._wishlistService.addToWishlist(this.movie!.id, this.movie!.title);
+      ? this._watchlistService.removeFromWatchlist(this.movie!.id, this.movie!.title)
+      : this._watchlistService.addToWatchlist(this.movie!.id, this.movie!.title);
   }
 
   private _checkForFavorite() {
-    this._wishlistSub = this._wishlistService.wishlist$.subscribe( (wishlist) => {
-      if (!wishlist) return;
-      this.isFavorite = wishlist.includes(this.movie!.id);
+    this._watchlistSub = this._watchlistService.watchlist$.subscribe( (watchlist) => {
+      if (!watchlist) return;
+      this.isFavorite = watchlist.includes(this.movie!.id);
     });
   }
 }

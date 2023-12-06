@@ -8,11 +8,26 @@
     </section>
     <section class="info-container">
       <p>
-        <i class="ph ph-star"></i>
+        <span class="stars-container">
+          <span class="empty-stars">
+            <i class="ph ph-star"></i>
+            <i class="ph ph-star"></i>
+            <i class="ph ph-star"></i>
+            <i class="ph ph-star"></i>
+            <i class="ph ph-star"></i>
+          </span>
+          <span class="filled-stars" [style.width]="ratingPercentage">
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+          </span>
+        </span>
         {{ movie?.rating }}
       </p>
-      <button class="wishlist-button" (click)="addToWishlist($event)">
-        <span class="wishlist-status">{{ isFavorite ? 'Remove from Wishlist' : 'Add to your Wishlist' }}</span>
+      <button class="watchlist-button" (click)="addToWatchlist($event)">
+        <span class="watchlist-status">{{ isFavorite ? 'Remove from Watchlist' : 'Add to your Watchlist' }}</span>
         <i [class]="isFavorite ? 'ph-fill ph-heart-straight' : 'ph ph-heart-straight'"></i>
       </button>
     </section>
