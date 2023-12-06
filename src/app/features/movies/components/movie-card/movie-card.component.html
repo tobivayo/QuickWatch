@@ -27,7 +27,7 @@
         {{ movie?.rating }}
       </p>
       <button class="watchlist-button" (click)="addToWatchlist($event)">
-        <span class="watchlist-status">{{ isFavorite ? 'Remove from Watchlist' : 'Add to your Watchlist' }}</span>
+        <span class="watchlist-status">{{ isFavorite ? 'On my Watchlist' : 'Add to Watchlist' }}</span>
         <i [class]="isFavorite ? 'ph-fill ph-heart-straight' : 'ph ph-heart-straight'"></i>
       </button>
     </section>
